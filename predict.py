@@ -28,13 +28,8 @@ class LoraPredictor:
             # --- LỌC ĐỐI TƯỢNG DỰ BÁO ---
             # Chỉ lấy các mặt hàng vừa đồng bộ từ Web (is_new=1)
             # Nếu không có cột is_new, mặc định lấy hết (để tránh lỗi code cũ)
-            if 'is_new' in df_hanghoa.columns:
-                df_target = df_hanghoa[df_hanghoa['is_new'] == 1]
-            else:
-                df_target = df_hanghoa
-
-            if df_target.empty:
-                return None, "Hiện tại không có mặt hàng mới nào từ Web (is_new=1) để dự báo."
+            
+           
 
             # --- TÍNH TOÁN NGÀY MỤC TIÊU ---
             target_date = datetime.now() + timedelta(days=int(days_ahead))
