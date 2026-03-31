@@ -19,7 +19,7 @@ sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 predictor = LoraPredictor()
 
 # --- BIẾN TOÀN CỤC ---
-MODEL_DIR = "Al-warehouse/model"
+MODEL_DIR = "model"
 DYNAMIC_RESPONSES = {}
 model = None
 vectorizer = None
