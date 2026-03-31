@@ -49,9 +49,7 @@ def get_forecast():
 # Sửa dòng này để nhận cả GET và POST
 @app.route('/api/chat', methods=['GET', 'POST'])
 def chat():
-    from flask import request, jsonify
-    
-    # Lấy tin nhắn dù là gửi qua URL (GET) hay gửi qua Body (POST)
+    # 1. Lấy dữ liệu đầu vào (Giữ nguyên logic của Trí)
     if request.method == 'GET':
         user_text = request.args.get('text')
     else:
@@ -59,11 +57,26 @@ def chat():
         user_text = data.get('text') if data else None
 
     if not user_text:
-        return jsonify({"response": "Leader chưa nhập tin nhắn nè!"}), 400
+        return jsonify({"response": "Leader chưa nhập tin nhắn nè!", "status": "error"}), 400
 
-    # Chỗ này là logic AI của Trí (gọi model dự đoán intent)
-    # Ví dụ tạm thời:
-    return jsonify({"intent": "greeting", "response": "Chào Trí! Lora AI đã nhận được tin nhắn."})
+    try:
+        # 2. GỌI LOGIC AI THỰC TẾ (Thay thế cho dòng ví dụ tạm thời)
+        # Hàm get_answer từ chat.py sẽ xử lý: Clean text -> Vectorize -> Predict -> Trả về Intent & Response
+        result = get_answer(user_text)
+
+        # 3. Trả về dữ liệu linh hoạt từ Model
+        return jsonify({
+            "intent": result.get("intent", "unknown"),
+            "response": result.get("response", "Xin lỗi Trí, Lora chưa hiểu ý ông lắm!"),
+            "status": "success"
+        })
+
+    except Exception as e:
+        # Trình bày lỗi chuyên nghiệp để Leader dễ debug
+        return jsonify({
+            "status": "error", 
+            "message": f"Lỗi xử lý AI: {str(e)}"
+        }), 500
 
 # --- ROUTE 3: SYNC DỮ LIỆU (Nút kích hoạt) ---
 @app.route('/api/sync', methods=['GET', 'POST'])
