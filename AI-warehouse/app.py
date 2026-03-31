@@ -49,7 +49,7 @@ def get_forecast():
 # Sửa dòng này để nhận cả GET và POST
 @app.route('/api/chat', methods=['GET', 'POST'])
 def chat():
-    # 1. Lấy dữ liệu đầu vào (Giữ nguyên logic của Trí)
+    # 1. Lấy tin nhắn
     if request.method == 'GET':
         user_text = request.args.get('text')
     else:
@@ -57,29 +57,32 @@ def chat():
         user_text = data.get('text') if data else None
 
     if not user_text:
-        return jsonify({"response": "Leader chưa nhập tin nhắn nè!", "status": "error"}), 400
+        return jsonify({"response": "Leader chưa nhập tin nhắn nè!"}), 400
 
     try:
-        # 2. GỌI LOGIC AI THỰC TẾ (Thay thế cho dòng ví dụ tạm thời)
-        # Hàm get_answer từ chat.py sẽ xử lý: Clean text -> Vectorize -> Predict -> Trả về Intent & Response
-        result = get_answer(user_text)
-        confidence_threshold = 0.5
-        # 3. Trả về dữ liệu linh hoạt từ Model
-        from chat import intents  # Giả sử intents là biến chứa dữ liệu JSON trong chat.py
+        # 2. Nạp tài nguyên nếu chưa có (Tránh lỗi resources_loaded)
+        from chat import load_resources, clean_text, vectorizer, model, DYNAMIC_RESPONSES, get_answer
+        load_resources() 
+
+        # 3. TIỀN XỬ LÝ & DỰ ĐOÁN (Giống hệt logic Terminal của ông)
+        cleaned = clean_text(user_text)
+        X = vectorizer.transform([cleaned])
         
-        result = get_answer(user_text, user_text, confidence_threshold, intents)
+        intent = model.predict(X)[0] # Lấy Intent (ví dụ: greeting1)
+        confidence = max(model.predict_proba(X)[0]) # Lấy độ tin cậy
+
+        # 4. GỌI HÀM VỚI ĐỦ 4 THAM SỐ
+        answer = get_answer(intent, user_text, confidence, DYNAMIC_RESPONSES)
 
         return jsonify({
-            "intent": result.get("intent", "unknown"),
-            "response": result.get("response", "Lora chưa hiểu ý Leader lắm!"),
+            "intent": intent,
+            "confidence": float(confidence),
+            "response": answer,
             "status": "success"
         })
+
     except Exception as e:
-        # Trình bày lỗi chuyên nghiệp để Leader dễ debug
-        return jsonify({
-            "status": "error", 
-            "message": f"Lỗi xử lý AI: {str(e)}"
-        }), 500
+        return jsonify({"status": "error", "message": f"Lỗi xử lý AI: {str(e)}"}), 500
 
 # --- ROUTE 3: SYNC DỮ LIỆU (Nút kích hoạt) ---
 @app.route('/api/sync', methods=['GET', 'POST'])
