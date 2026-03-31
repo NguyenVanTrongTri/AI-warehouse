@@ -28,7 +28,10 @@ class LoraPredictor:
             # --- LỌC ĐỐI TƯỢNG DỰ BÁO ---
             # Chỉ lấy các mặt hàng vừa đồng bộ từ Web (is_new=1)
             # Nếu không có cột is_new, mặc định lấy hết (để tránh lỗi code cũ)
-            
+            df_target = df_hanghoa 
+
+            if df_target.empty:
+                return None, "Database hiện tại chưa có hàng hóa nào để dự báo."
            
 
             # --- TÍNH TOÁN NGÀY MỤC TIÊU ---
