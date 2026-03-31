@@ -18,7 +18,7 @@ sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
 predictor = LoraPredictor()
 
-# --- BIẾN TOÀN CỤC ---
+# --- BIẾN TOÀN CỤC ----
 MODEL_DIR = "model"
 DYNAMIC_RESPONSES = {}
 model = None
