@@ -63,14 +63,17 @@ def chat():
         # 2. GỌI LOGIC AI THỰC TẾ (Thay thế cho dòng ví dụ tạm thời)
         # Hàm get_answer từ chat.py sẽ xử lý: Clean text -> Vectorize -> Predict -> Trả về Intent & Response
         result = get_answer(user_text)
-
+        confidence_threshold = 0.5
         # 3. Trả về dữ liệu linh hoạt từ Model
+        from chat import intents  # Giả sử intents là biến chứa dữ liệu JSON trong chat.py
+        
+        result = get_answer(user_text, user_text, confidence_threshold, intents)
+
         return jsonify({
             "intent": result.get("intent", "unknown"),
-            "response": result.get("response", "Xin lỗi Trí, Lora chưa hiểu ý ông lắm!"),
+            "response": result.get("response", "Lora chưa hiểu ý Leader lắm!"),
             "status": "success"
         })
-
     except Exception as e:
         # Trình bày lỗi chuyên nghiệp để Leader dễ debug
         return jsonify({
