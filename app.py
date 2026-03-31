@@ -1,11 +1,13 @@
 import os
 import gc
+import joblib
 import pandas as pd
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 # Import logic (Lazy loading bên trong chat.py giúp import ở đây rất nhẹ)
 from chat import clean_text, get_answer, load_resources, resources_loaded
+from predict import LoraPredictor
 from readDatabase import read_data 
 
 app = Flask(__name__)
@@ -19,31 +21,50 @@ SNAPSHOT_PATH = os.path.join(BASE_DIR, "data_history", "database_snapshot.bin")
 def home():
     return jsonify({"status": "online", "message": "Lora AI Level 3 - Ready to work!"})
 
+# Khởi tạo predictor một lần duy nhất (Global) để tiết kiệm RAM
+# Khi server khởi động, nó sẽ nạp Model một lần và giữ đó dùng luôn
+predictor = LoraPredictor()
+
 # --- ROUTE 1: DỰ BÁO ---
 @app.route('/api/forecast', methods=['GET'])
 def get_forecast():
     try:
-        from predict import LoraPredictor
-        predictor = LoraPredictor()
+        # 1. Lấy tham số số ngày dự báo
         days_param = request.args.get('days', default=1, type=int)
 
+        # 2. Kiểm tra file snapshot
         if not os.path.exists(SNAPSHOT_PATH):
-            return jsonify({"status": "error", "message": "Snapshot chưa tồn tại. Chạy /api/sync trước."}), 404
+            return jsonify({
+                "status": "error", 
+                "message": "Snapshot chưa tồn tại. Leader hãy chạy /api/sync trước nhé!"
+            }), 404
 
-        import joblib
+        # 3. Đọc dữ liệu từ Snapshot
         db_snapshot = joblib.load(SNAPSHOT_PATH)
+        
+        # Kiểm tra xem table hanghoa có tồn tại trong snapshot không
+        if "tables" not in db_snapshot or "hanghoa" not in db_snapshot["tables"]:
+             return jsonify({"status": "error", "message": "Dữ liệu hàng hóa rỗng trong snapshot."}), 500
+             
         df_hanghoa = pd.DataFrame(db_snapshot["tables"]["hanghoa"])
+        
+        # Xóa snapshot ngay để giải phóng RAM
         del db_snapshot 
         
+        # 4. Gọi bộ não dự báo (Sử dụng predictor toàn cục đã tạo ở trên)
         data, error = predictor.get_forecast_data(df_hanghoa, days_ahead=days_param)
         
+        # 5. Dọn dẹp bộ nhớ triệt để
         del df_hanghoa
-        gc.collect() # Giải phóng RAM ngay
+        gc.collect() 
 
-        if error: return jsonify({"status": "error", "message": error}), 500
+        if error: 
+            return jsonify({"status": "error", "message": error}), 500
+            
         return jsonify({"status": "success", "data": data})
+
     except Exception as e:
-        return jsonify({"status": "error", "message": str(e)}), 500
+        return jsonify({"status": "error", "message": f"Lỗi Server: {str(e)}"}), 500
 
 # --- ROUTE 2: CHATBOT AI ---
 # Sửa dòng này để nhận cả GET và POST
