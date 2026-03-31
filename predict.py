@@ -7,7 +7,8 @@ from datetime import datetime, timedelta
 
 class LoraPredictor:
     def __init__(self):
-        self.model_path = "model/train_data_detail_model.pkl"
+       
+        self.model_path = "model/tonkho_chitiet_model.pkl" 
         self.encoder_path = "model/label_encoder.pkl"
         self.acc_file = "model/accuracy_info.json"
 
