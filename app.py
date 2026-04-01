@@ -1,25 +1,39 @@
 import os
 import gc
 import pandas as pd
+import joblib
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
-# Import logic (Lazy loading bên trong chat.py giúp import ở đây rất nhẹ)
-from chat import clean_text, get_answer, load_resources, resources_loaded
-from readDatabase import read_data 
+# Import logic từ chat.py
+from chat import clean_text, get_answer, load_resources, DYNAMIC_RESPONSES
 
 app = Flask(__name__)
 CORS(app)
 
-# --- CẤU HÌNH ---
+# --- CẤU HÌNH ĐƯỜNG DẪN ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SNAPSHOT_PATH = os.path.join(BASE_DIR, "data_history", "database_snapshot.bin")
 
+# --- 1. KHỞI TẠO TÀI NGUYÊN KHI START SERVER ---
+# Ép buộc nạp model ngay khi khởi động để tránh lỗi 'NoneType'
+with app.app_context():
+    print(">>> [HỆ THỐNG]: Đang khởi tạo tài nguyên AI...")
+    try:
+        load_resources()
+        print(">>> [HỆ THỐNG]: Nạp tài nguyên thành công!")
+    except Exception as e:
+        print(f">>> [LỖI]: Không thể nạp tài nguyên: {e}")
+
 @app.route('/')
 def home():
-    return jsonify({"status": "online", "message": "Lora AI Level 3 - Ready to work!"})
+    return jsonify({
+        "status": "online", 
+        "message": "Lora AI Level 3 - Hệ thống đã sẵn sàng!",
+        "version": "3.1.0"
+    })
 
-# --- ROUTE 1: DỰ BÁO ---
+# --- ROUTE 1: DỰ BÁO (Tối ưu bộ nhớ) ---
 @app.route('/api/forecast', methods=['GET'])
 def get_forecast():
     try:
@@ -28,9 +42,9 @@ def get_forecast():
         days_param = request.args.get('days', default=1, type=int)
 
         if not os.path.exists(SNAPSHOT_PATH):
-            return jsonify({"status": "error", "message": "Snapshot chưa tồn tại. Chạy /api/sync trước."}), 404
+            return jsonify({"status": "error", "message": "Dữ liệu chưa được đồng bộ. Hãy chạy /api/sync"}), 404
 
-        import joblib
+        # Load snapshot và giải phóng ngay
         db_snapshot = joblib.load(SNAPSHOT_PATH)
         df_hanghoa = pd.DataFrame(db_snapshot["tables"]["hanghoa"])
         del db_snapshot 
@@ -38,20 +52,20 @@ def get_forecast():
         data, error = predictor.get_forecast_data(df_hanghoa, days_ahead=days_param)
         
         del df_hanghoa
-        gc.collect() # Giải phóng RAM ngay
+        gc.collect() 
 
         if error: return jsonify({"status": "error", "message": error}), 500
         return jsonify({"status": "success", "data": data})
     except Exception as e:
-        return jsonify({"status": "error", "message": str(e)}), 500
+        return jsonify({"status": "error", "message": f"Lỗi dự báo: {str(e)}"}), 500
 
-# --- ROUTE 2: CHATBOT AI ---
-# Sửa dòng này để nhận cả GET và POST
-# --- ROUTE 2: CHATBOT AI (BẢN ĐÃ SỬA) ---
+# --- ROUTE 2: CHATBOT AI (Bản nâng cấp chống lỗi) ---
 @app.route('/api/chat', methods=['GET', 'POST'])
 def chat():
-    from chat import vectorizer, model, DYNAMIC_RESPONSES # Đảm bảo các biến này đã sẵn sàng
+    # Import trực tiếp để đảm bảo lấy đúng biến Global từ chat.py
+    from chat import vectorizer, model
     
+    # Lấy tin nhắn linh hoạt
     if request.method == 'GET':
         user_text = request.args.get('text')
     else:
@@ -59,41 +73,50 @@ def chat():
         user_text = data.get('text') if data else None
 
     if not user_text:
-        return jsonify({"response": "Leader chưa nhập tin nhắn nè!"}), 400
+        return jsonify({"response": "Leader ơi, bạn chưa nhập tin nhắn!", "status": "error"}), 400
+
+    # KIỂM TRA MODEL TRƯỚC KHI CHẠY
+    if vectorizer is None or model is None:
+        # Nếu chưa load thì thử load lại một lần nữa
+        load_resources()
+        from chat import vectorizer, model
+        if vectorizer is None:
+            return jsonify({"response": "Hệ thống AI đang khởi động, vui lòng thử lại sau giây lát!", "status": "error"}), 503
 
     try:
-        # 1. Làm sạch văn bản
         cleaned = clean_text(user_text)
-        
-        # 2. Dự đoán Intent bằng Model AI giống hệt chat.py
         X = vectorizer.transform([cleaned])
+        
         intent = model.predict(X)[0]
         proba = model.predict_proba(X)[0]
         confidence = max(proba)
 
-        # 3. Lấy câu trả lời từ file JSON (DYNAMIC_RESPONSES)
+        # Lấy phản hồi động
         answer = get_answer(intent, user_text, confidence, DYNAMIC_RESPONSES)
 
-        # 4. Trả kết quả THẬT về cho Web
         return jsonify({
             "intent": str(intent),
-            "confidence": float(confidence),
+            "confidence": round(float(confidence), 2),
             "response": answer,
             "status": "success"
         })
 
     except Exception as e:
         return jsonify({"status": "error", "message": f"Lỗi xử lý AI: {str(e)}"}), 500
-# --- ROUTE 3: SYNC DỮ LIỆU (Nút kích hoạt) ---
+
+# --- ROUTE 3: ĐỒNG BỘ DỮ LIỆU ---
 @app.route('/api/sync', methods=['GET', 'POST'])
 def manual_sync():
+    from readDatabase import read_data
+    print(">>> [HỆ THỐNG]: Đang đồng bộ dữ liệu mới...")
     if read_data():
-        load_resources() # Nạp lại tài nguyên vào RAM sau khi sync
+        load_resources() # Nạp lại model và JSON mới vào RAM
         gc.collect()
-        return jsonify({"status": "success", "message": "Đồng bộ dữ liệu Cloud thành công!"})
-    return jsonify({"status": "error", "message": "Đồng bộ thất bại. Kiểm tra DB Cloud."}), 500
+        return jsonify({"status": "success", "message": "Đã cập nhật kiến thức mới từ Cloud!"})
+    return jsonify({"status": "error", "message": "Kết nối Database Cloud thất bại."}), 500
 
 if __name__ == "__main__":
+    # Trên Render sử dụng biến môi trường PORT
     port = int(os.environ.get("PORT", 10000))
-    # KHÔNG gọi nạp dữ liệu ở đây để tránh treo Port khi khởi động
-    app.run(host='0.0.0.0', port=port)
+    # Sử dụng threaded=True để xử lý nhiều yêu cầu cùng lúc
+    app.run(host='0.0.0.0', port=port, threaded=True)
