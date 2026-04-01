@@ -430,5 +430,162 @@
             "du bao hang hoa can nhap vao ngay mai"
         ],
         "response": "LORA đang tính toán dựa trên dữ liệu quá khứ... Dự báo trong thời gian tới như sau:"
+    },
+    {
+        "intent": "user_status",
+        "patterns": [
+            "may dung de lam gi"
+        ],
+        "response": "Tôi được tạo ra để phục vụ dự đoán số liệu cho mô hình quản lý kho bách hóa xanh!"
+    },
+    {
+        "intent": "ai_generative1",
+        "patterns": [
+            "may la ai",
+            "may do ai tao ra"
+        ],
+        "response": "Tôi là LORA,Tôi là một model ai dự đoán tương lai!"
+    },
+    {
+        "intent": "smalltalk_status",
+        "patterns": [
+            "ranh k m",
+            "lora oi ranh khong",
+            "ranh chu",
+            "co ban lam khong",
+            "may ranh k",
+            "dang lam gi do",
+            "may co ranh khong"
+        ],
+        "response": "Rảnh, tôi có thể giúp gì cho bạn!"
+    },
+    {
+        "intent": "struct_overall",
+        "patterns": [
+            "kien truc cua lora",
+            "so do thu muc",
+            "cau truc thu muc cua ban",
+            "cau tao cua tro ly nay",
+            "giai thich cac file trong project",
+            "du an nay gom nhung gi",
+            "cac thanh phan cua he thong",
+            "thu muc aiwarehouse co gi"
+        ],
+        "response": "Dự án của tôi gồm 3 phần chính: Dữ liệu (dataset), Mô hình đã huấn luyện (model) và các mã nguồn thực thi (Python scripts)."
+    },
+    {
+        "intent": "struct_data_history",
+        "patterns": [
+            "sao luu du lieu o dau",
+            "lich su huan luyen luu o file nao",
+            "muc dich tao ra may de lam gi",
+            "full dataset dung de lam gi",
+            "du lieu tho nam o dau",
+            "du lieu lich su nam o dau",
+            "muc dich may duoc tao ra",
+            "file bin va json trong history",
+            "thu muc datahistory la gi",
+            "may duoc tao ra vi muc dich gi",
+            "check data history"
+        ],
+        "response": "Tôi là LORA AI,Tôi được tạo ra nhằm mục đích trao đổi và dự đoán tương lai trong mô hình quản lý bách hóa xanh "
+    },
+    {
+        "intent": "struct_model_folder",
+        "patterns": [
+            "giai thich intentmapjson",
+            "kiem tra file model",
+            "file pkl la gi",
+            "file vectorizerpkl dung lam gi",
+            "thu muc model chua gi",
+            "mo hinh da train xong chua",
+            "bo nao cua ai nam o file nao",
+            "mo hinh luu o dau"
+        ],
+        "response": "Thư mục model chứa 'bộ não' của tôi, bao gồm warehouse_model.pkl và vectorizer để tôi có thể hiểu được ngôn ngữ của bạn."
+    },
+    {
+        "intent": "struct_inference",
+        "patterns": [
+            "he thong xu ly cau hoi the nao",
+            "kich hoat bo suy luan",
+            "chay file inference",
+            "file inferencepy la gi",
+            "ai tra loi bang file nao",
+            "file thuc thi chinh",
+            "lam sao de chay du doan",
+            "co che phan hoi cua lora"
+        ],
+        "response": "Inference.py là file chạy chính, nó giúp tôi tiếp nhận câu hỏi từ bạn, phân tích và đưa ra phản hồi phù hợp nhất."
+    },
+    {
+        "intent": "struct_training_script",
+        "patterns": [
+            "lam sao de day lora cau moi",
+            "huan luyen mo hinh",
+            "cach huan luyen lai ai",
+            "cap nhat kien thuc cho ai",
+            "day hoc cho tro ly",
+            "chay file train",
+            "khi nao can chay trainpy",
+            "file trainpy dung lam gi"
+        ],
+        "response": "Train.py được dùng khi bạn muốn tôi học thêm các mẫu câu mới. Chỉ cần chạy file này, tôi sẽ cập nhật lại kiến thức ngay!"
+    },
+    {
+        "intent": "struct_database_script",
+        "patterns": [
+            "lay thong tin tu database",
+            "lora doc du lieu o dau",
+            "doc data tu sql",
+            "cach lay du lieu tu kho",
+            "file readdatabasepy lam gi",
+            "truy xuat du lieu kho",
+            "ket noi co so du lieu",
+            "file doc database"
+        ],
+        "response": "ReadDatabase.py chịu trách nhiệm kết nối và lấy thông tin hàng hóa trực tiếp từ cơ sở dữ liệu để tôi có thông tin chính xác nhất."
+    },
+    {
+        "intent": "struct_dataset_json",
+        "patterns": [
+            "xem danh sach cau hoi",
+            "file datasetjson la gi",
+            "file mau cau nam o dau",
+            "sua cau tra loi o dau",
+            "quan ly tap du lieu",
+            "them intent moi vao dau",
+            "noi dung file dataset",
+            "cau truc file dataset"
+        ],
+        "response": "Dataset.json là nơi lưu trữ các mẫu câu hỏi và trả lời mà bạn đang bổ sung cho tôi đấy!"
+    },
+    {
+        "intent": "struct_vectorizer",
+        "patterns": [
+            "tai sao can vectorizerpkl",
+            "xu ly ngon ngu the nao",
+            "tac dung cua file vector",
+            "lora hieu tieng viet the nao",
+            "chuyen van ban thanh so",
+            "giai thich file pkl",
+            "bo ma hoa ngon ngu",
+            "vectorizer la cai gi"
+        ],
+        "response": "Vectorizer giúp tôi chuyển đổi các câu chữ của bạn thành những con số để máy tính có thể hiểu và tính toán được."
+    },
+    {
+        "intent": "struct_intent_map",
+        "patterns": [
+            "cach ai phan loai cau hoi",
+            "check intent map",
+            "giai thich file intentmapjson",
+            "phan loai muc dich cau hoi",
+            "anh xa y dinh",
+            "lam sao ai biet toi muon gi",
+            "intent map la gi",
+            "ban do y dinh"
+        ],
+        "response": "Intent_map.json giúp tôi ánh xạ các từ ngữ bạn nói vào đúng mục đích (như chào hỏi, công việc hay kỹ thuật)."
     }
 ]

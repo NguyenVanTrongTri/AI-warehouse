@@ -29,5 +29,17 @@
     "algo_error_fix": "Có thể do dữ liệu thực tế biến động đột ngột. Để tôi loại bỏ các giá trị nhiễu và tính toán lại cho chuẩn nhé.",
     "algo_comparison": "Hồi quy tuyến tính đơn giản, nhanh và cực kỳ hiệu quả cho việc dự báo các con số cụ thể trong quản lý kho.",
     "tired_ge": "Bạn mệt rồi á, Bạn hãy nghỉ ngơi một tí!",
-    "predict_import": "LORA đang tính toán dựa trên dữ liệu quá khứ... Dự báo trong thời gian tới như sau:"
+    "predict_import": "LORA đang tính toán dựa trên dữ liệu quá khứ... Dự báo trong thời gian tới như sau:",
+    "user_status": "Tôi được tạo ra để phục vụ dự đoán số liệu cho mô hình quản lý kho bách hóa xanh!",
+    "ai_generative1": "Tôi là LORA,Tôi là một model ai dự đoán tương lai!",
+    "smalltalk_status": "Rảnh, tôi có thể giúp gì cho bạn!",
+    "struct_overall": "Dự án của tôi gồm 3 phần chính: Dữ liệu (dataset), Mô hình đã huấn luyện (model) và các mã nguồn thực thi (Python scripts).",
+    "struct_data_history": "Tôi là LORA AI,Tôi được tạo ra nhằm mục đích trao đổi và dự đoán tương lai trong mô hình quản lý bách hóa xanh ",
+    "struct_model_folder": "Thư mục model chứa 'bộ não' của tôi, bao gồm warehouse_model.pkl và vectorizer để tôi có thể hiểu được ngôn ngữ của bạn.",
+    "struct_inference": "Inference.py là file chạy chính, nó giúp tôi tiếp nhận câu hỏi từ bạn, phân tích và đưa ra phản hồi phù hợp nhất.",
+    "struct_training_script": "Train.py được dùng khi bạn muốn tôi học thêm các mẫu câu mới. Chỉ cần chạy file này, tôi sẽ cập nhật lại kiến thức ngay!",
+    "struct_database_script": "ReadDatabase.py chịu trách nhiệm kết nối và lấy thông tin hàng hóa trực tiếp từ cơ sở dữ liệu để tôi có thông tin chính xác nhất.",
+    "struct_dataset_json": "Dataset.json là nơi lưu trữ các mẫu câu hỏi và trả lời mà bạn đang bổ sung cho tôi đấy!",
+    "struct_vectorizer": "Vectorizer giúp tôi chuyển đổi các câu chữ của bạn thành những con số để máy tính có thể hiểu và tính toán được.",
+    "struct_intent_map": "Intent_map.json giúp tôi ánh xạ các từ ngữ bạn nói vào đúng mục đích (như chào hỏi, công việc hay kỹ thuật)."
 }
