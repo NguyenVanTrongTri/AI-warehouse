@@ -47,11 +47,11 @@ def get_forecast():
 
 # --- ROUTE 2: CHATBOT AI ---
 # Sửa dòng này để nhận cả GET và POST
+# --- ROUTE 2: CHATBOT AI (BẢN ĐÃ SỬA) ---
 @app.route('/api/chat', methods=['GET', 'POST'])
 def chat():
-    from flask import request, jsonify
+    from chat import vectorizer, model, DYNAMIC_RESPONSES # Đảm bảo các biến này đã sẵn sàng
     
-    # Lấy tin nhắn dù là gửi qua URL (GET) hay gửi qua Body (POST)
     if request.method == 'GET':
         user_text = request.args.get('text')
     else:
@@ -61,10 +61,29 @@ def chat():
     if not user_text:
         return jsonify({"response": "Leader chưa nhập tin nhắn nè!"}), 400
 
-    # Chỗ này là logic AI của Trí (gọi model dự đoán intent)
-    # Ví dụ tạm thời:
-    return jsonify({"intent": "greeting", "response": "Chào Trí! Lora AI đã nhận được tin nhắn."})
+    try:
+        # 1. Làm sạch văn bản
+        cleaned = clean_text(user_text)
+        
+        # 2. Dự đoán Intent bằng Model AI giống hệt chat.py
+        X = vectorizer.transform([cleaned])
+        intent = model.predict(X)[0]
+        proba = model.predict_proba(X)[0]
+        confidence = max(proba)
 
+        # 3. Lấy câu trả lời từ file JSON (DYNAMIC_RESPONSES)
+        answer = get_answer(intent, user_text, confidence, DYNAMIC_RESPONSES)
+
+        # 4. Trả kết quả THẬT về cho Web
+        return jsonify({
+            "intent": str(intent),
+            "confidence": float(confidence),
+            "response": answer,
+            "status": "success"
+        })
+
+    except Exception as e:
+        return jsonify({"status": "error", "message": f"Lỗi xử lý AI: {str(e)}"}), 500
 # --- ROUTE 3: SYNC DỮ LIỆU (Nút kích hoạt) ---
 @app.route('/api/sync', methods=['GET', 'POST'])
 def manual_sync():
