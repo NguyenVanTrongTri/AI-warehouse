@@ -4,59 +4,59 @@
         "patterns": [
             "dem tat ca danh muc",
             "tong cong danh muc",
-            "tong so danh muc hang hoa",
             "co bao nhieu danh muc hang hoa",
-            "tong cong co bao nhieu danh muc",
             "tong so danh muc",
             "co bao nhieu danh muc tat ca",
-            "dem tong so dong trong bang danh muc"
+            "dem tong so dong trong bang danh muc",
+            "tong cong co bao nhieu danh muc",
+            "tong so danh muc hang hoa"
         ],
         "response": "SELECT COUNT(*) AS TongSoDanhMuc FROM danhmuc"
     },
     {
         "intent": "greeting",
         "patterns": [
-            "hi",
-            "chao tro ly kho hang",
-            "xin chao",
             "rat vui duoc gap ban",
-            "ban co dang online khong",
-            "xin chao lora",
-            "hello",
-            "alo lora oi",
-            "co do khong vay",
-            "hey lora",
             "chao ban nhe",
-            "chao lora"
+            "co do khong vay",
+            "xin chao",
+            "xin chao lora",
+            "alo lora oi",
+            "chao lora",
+            "hey lora",
+            "chao tro ly kho hang",
+            "hi",
+            "hello",
+            "ban co dang online khong"
         ],
         "response": "Xin chào! Rất vui được gặp bạn. Tôi là LORA AI, tôi có thể giúp gì cho bạn!"
     },
     {
         "intent": "greeting1",
         "patterns": [
-            "toi muon hoi cai nay",
-            "ong oi giup toi voi",
-            "alo ban oi",
-            "ranh khong noi chuyen ti",
+            "e lora",
             "noi chuyen ti di",
             "co ranh khong lora",
+            "alo ban oi",
             "lora dang ban gi a",
-            "dang lam gi do lora",
-            "e lora"
+            "ong oi giup toi voi",
+            "ranh khong noi chuyen ti",
+            "toi muon hoi cai nay",
+            "dang lam gi do lora"
         ],
         "response": "Tôi đây! m muốn gì!"
     },
     {
         "intent": "greeting2",
         "patterns": [
-            "ban khoe khong",
+            "dao nay the nao lora",
             "hom nay cua ban sao roi",
-            "moi viec van on chu",
-            "ban cam thay the nao hom nay",
             "khoe khong lora oi",
+            "ban cam thay the nao hom nay",
             "suc khoe ban the nao",
             "cong viec on khong",
-            "dao nay the nao lora"
+            "moi viec van on chu",
+            "ban khoe khong"
         ],
         "response": "Tôi là AI nên luôn luôn sẵn sàng hỗ trợ bạn! Còn bạn thì sao?"
     },
@@ -64,12 +64,12 @@
         "intent": "greeting3",
         "patterns": [
             "ban la robot a",
-            "ai dang noi chuyen do",
-            "gioi thieu ve ban di",
-            "ban la ai",
             "ban ten la gi vay",
             "ten cua tro ly nay la gi",
+            "ban la ai",
+            "gioi thieu ve ban di",
             "ten ban la gi",
+            "ai dang noi chuyen do",
             "ban la cai gi vay"
         ],
         "response": "Tôi là LORA AI, trợ lý kho hàng thông minh của dự án này."
@@ -77,42 +77,42 @@
     {
         "intent": "greeting4",
         "patterns": [
+            "da ro cam on lora",
+            "cam on ban nhe",
+            "tuyet voi cam on",
             "cam on vi da giup do",
-            "cam on lora nha",
-            "thank you lora",
             "da ta ban",
             "cam on ban rat nhieu",
-            "tuyet voi cam on",
-            "cam on ban nhe",
-            "da ro cam on lora"
+            "cam on lora nha",
+            "thank you lora"
         ],
         "response": "Không có gì! Đó là trách nhiệm của tôi mà."
     },
     {
         "intent": "greeting5",
         "patterns": [
+            "cho minh xin loi nha",
+            "toi sai roi xin loi lora",
+            "xin loi vi su bat tien",
             "lam phien ban ti nhe",
             "xin loi nhe",
-            "toi lo tay xin loi",
-            "xin loi vi su bat tien",
-            "toi sai roi xin loi lora",
             "thanh that xin loi ban",
-            "cho minh xin loi nha"
+            "toi lo tay xin loi"
         ],
         "response": "Không sao đâu, tôi hiểu mà. Chúng ta tiếp tục công việc nhé."
     },
     {
         "intent": "greeting6",
         "patterns": [
-            "dong y voi ban",
             "chot phuong an nhe",
-            "toi xac nhan dong y",
+            "vang dung roi",
             "dung roi lora",
-            "ok chot nhe",
             "lam theo y do di",
-            "da dung vay",
             "ok toi hieu roi",
-            "vang dung roi"
+            "dong y voi ban",
+            "toi xac nhan dong y",
+            "ok chot nhe",
+            "da dung vay"
         ],
         "response": "Tuyệt vời, tôi đã ghi nhận xác nhận của bạn."
     },
@@ -120,123 +120,123 @@
         "intent": "greeting7",
         "patterns": [
             "ban lam sai roi",
-            "sai hoan toan roi",
-            "toi tu choi nhe",
-            "toi khong muon lam the",
-            "khong dung y toi",
-            "huy bo di",
             "khong dong y dau",
-            "khong phai dau"
+            "toi khong muon lam the",
+            "toi tu choi nhe",
+            "sai hoan toan roi",
+            "khong phai dau",
+            "khong dung y toi",
+            "huy bo di"
         ],
         "response": "Đã rõ, tôi sẽ hủy hoặc không thực hiện thao tác đó."
     },
     {
         "intent": "greeting8",
         "patterns": [
-            "nghi ngoi thoi",
-            "chao tam biet lora",
-            "hen gap lai lora",
-            "ket thuc tai day nhe",
             "toi di day",
+            "tam biet lora nhe",
+            "nghi ngoi thoi",
+            "hen gap lai lora",
             "bye bye",
+            "ket thuc tai day nhe",
             "hen gap lai ban sau",
-            "tam biet lora nhe"
+            "chao tam biet lora"
         ],
         "response": "Tạm biệt bạn! Hẹn gặp lại sớm nhé."
     },
     {
         "intent": "job_ask_ai",
         "patterns": [
-            "lora giup duoc gi trong kho",
-            "vai tro cua tro ly ai",
             "ban duoc tao ra de lam gi",
             "cong viec cua ban la gi",
+            "nhiem vu cua ban la gi",
+            "vai tro cua tro ly ai",
+            "nghe cua lora la gi",
             "ban lam nghe gi",
             "ban co biet quan ly khong",
-            "nghe cua lora la gi",
-            "nhiem vu cua ban la gi"
+            "lora giup duoc gi trong kho"
         ],
         "response": "Nghề của tôi là trợ lý ảo, chuyên trách quản lý kho hàng và hỗ trợ bạn tối ưu hóa công việc mỗi ngày!"
     },
     {
         "intent": "job_ask_user",
         "patterns": [
-            "nghe nghiep cua toi",
-            "vi tri cua toi trong kho",
             "cong viec cua toi la gi",
+            "toi co phai quan ly khong",
             "toi lam nghe gi ban biet khong",
+            "vi tri cua toi trong kho",
             "vai tro cua toi o day",
             "doan xem toi lam gi",
             "ban biet gi ve nghe cua toi",
-            "toi co phai quan ly khong"
+            "nghe nghiep cua toi"
         ],
         "response": "Bạn là người điều hành trực tiếp! Tôi thấy bạn rất giỏi trong việc quản lý quy trình và xử lý hàng hóa."
     },
     {
         "intent": "job_stress",
         "patterns": [
-            "met moi voi nghe nay qua",
-            "muon nghi viec qua",
             "stress vi cong viec",
-            "nhieu viec qua lora oi",
+            "nghe nay vat va that",
             "cong viec kho khan",
-            "cong viec ap luc qua",
+            "met moi voi nghe nay qua",
+            "nhieu viec qua lora oi",
+            "muon nghi viec qua",
             "lam nghe nay kho qua",
-            "nghe nay vat va that"
+            "cong viec ap luc qua"
         ],
         "response": "Tôi hiểu mà. Áp lực là một phần của thành công, nhưng đừng quên nghỉ ngơi một chút nhé. Tôi luôn ở đây hỗ trợ bạn!"
     },
     {
         "intent": "job_salary",
         "patterns": [
-            "hoi ve tien luong",
-            "thang nay co thuong khong",
             "tang luong cho toi di",
-            "thu nhap nghe nay on khong",
-            "luong lau the nao",
-            "phuc loi cong viec",
+            "thang nay co thuong khong",
             "luong bao gio ve",
-            "luong thap qua"
+            "luong thap qua",
+            "thu nhap nghe nay on khong",
+            "phuc loi cong viec",
+            "hoi ve tien luong",
+            "luong lau the nao"
         ],
         "response": "Vấn đề tài chính này bạn nên trao đổi với phòng nhân sự nhé, nhưng tôi tin là nỗ lực của bạn sẽ sớm được đền đáp xứng đáng!"
     },
     {
         "intent": "job_promotion",
         "patterns": [
-            "hoc them ky nang gi",
-            "muon lam sep",
-            "tuong lai nghe nghiep",
-            "lam sao de thang tien",
             "len chuc quan ly",
             "lo trinh thang tien",
+            "tuong lai nghe nghiep",
+            "hoc them ky nang gi",
+            "phat trien ban than",
+            "muon lam sep",
             "co hoi nghe nghiep",
-            "phat trien ban than"
+            "lam sao de thang tien"
         ],
         "response": "Hãy tập trung vào việc tối ưu hóa quy trình và nắm vững dữ liệu kho. Sự chuyên nghiệp sẽ đưa bạn tiến xa!"
     },
     {
         "intent": "job_interview",
         "patterns": [
-            "di phong van can luu y gi",
             "cau hoi phong van kho",
-            "tim viec lam moi",
-            "ky nang can co cho nghe nay",
-            "chuan bi phong van",
             "kinh nghiem xin viec",
+            "tim viec lam moi",
             "tu van tim viec",
-            "ho so xin viec"
+            "ho so xin viec",
+            "di phong van can luu y gi",
+            "chuan bi phong van",
+            "ky nang can co cho nghe nay"
         ],
         "response": "Hãy tự tin vào kinh nghiệm thực tế của mình. Nếu cần, tôi có thể giúp bạn liệt kê các thành tích xuất sắc trong kho hàng!"
     },
     {
         "intent": "job_change",
         "patterns": [
-            "dinh huong nghe nghiep moi",
-            "chan lam kho roi",
-            "nghe nao dang hot",
-            "muon doi nghe",
             "tu van doi nghe",
+            "chan lam kho roi",
             "chuyen sang lam it",
+            "nghe nao dang hot",
+            "dinh huong nghe nghiep moi",
+            "muon doi nghe",
             "tim nghe khac",
             "co nen chuyen viec khong"
         ],
@@ -245,55 +245,55 @@
     {
         "intent": "job_colleagues",
         "patterns": [
-            "noi chuyen voi dong nghiep",
-            "phoi hop cong viec",
-            "moi nguoi lam viec sao roi",
-            "quan he voi dong nghiep",
             "dong nghiep kho tinh",
             "xung dot trong cong viec",
+            "phoi hop cong viec",
+            "quan he voi dong nghiep",
+            "noi chuyen voi dong nghiep",
+            "teamwork co tot khong",
             "lam viec nhom",
-            "teamwork co tot khong"
+            "moi nguoi lam viec sao roi"
         ],
         "response": "Giao tiếp là chìa khóa của teamwork. Một nụ cười sẽ giúp mối quan hệ đồng nghiệp trở nên tốt đẹp hơn đấy!"
     },
     {
         "intent": "job_satisfaction",
         "patterns": [
-            "viec nay hop voi toi",
-            "cong viec rat y nghia",
             "dam me voi nghe",
-            "nghe nay thu vi qua",
-            "thay hanh phuc khi lam viec",
-            "cam on vi cong viec tot",
             "yeu cong viec nay",
-            "toi thich lam kho"
+            "cong viec rat y nghia",
+            "toi thich lam kho",
+            "viec nay hop voi toi",
+            "cam on vi cong viec tot",
+            "nghe nay thu vi qua",
+            "thay hanh phuc khi lam viec"
         ],
         "response": "Thật tuyệt vời khi thấy bạn tràn đầy năng lượng! Đam mê chính là động lực lớn nhất để thành công."
     },
     {
         "intent": "job_tools",
         "patterns": [
-            "dung cu kho hang",
-            "cong cu ho tro cong viec",
-            "trang thiet bi bao ho",
-            "dung phan mem gi",
-            "can them may moc gi",
             "nang cap he thong",
+            "thiet bi lam viec",
+            "dung cu kho hang",
+            "dung phan mem gi",
+            "cong cu ho tro cong viec",
             "cong nghe trong nghe",
-            "thiet bi lam viec"
+            "can them may moc gi",
+            "trang thiet bi bao ho"
         ],
         "response": "Sử dụng đúng công cụ sẽ giúp hiệu suất tăng vọt. Bạn cần tôi hướng dẫn sử dụng tính năng nào của hệ thống không?"
     },
     {
         "intent": "algo_definition",
         "patterns": [
-            "hoi quy don bien la gi",
-            "hoi quy tuyen tinh la gi",
-            "co che du doan",
             "giai thich linear regression",
+            "hoi quy tuyen tinh la gi",
+            "thuat toan nay hoat dong sao",
+            "co che du doan",
+            "hoi quy don bien la gi",
             "dinh nghia hoi quy",
             "thuat toan du bao la gi",
-            "thuat toan nay hoat dong sao",
             "nguyen ly cua linear regression"
         ],
         "response": "Hồi quy tuyến tính là thuật toán tìm mối liên hệ giữa các biến để dự báo giá trị tương lai dựa trên dữ liệu quá khứ đó!"
@@ -301,69 +301,69 @@
     {
         "intent": "algo_application",
         "patterns": [
-            "dung hoi quy de lam gi",
-            "du bao ton kho the nao",
+            "du doan doanh so",
+            "ung dung trong kho hang",
+            "tinh toan luong hang nhap",
+            "loi ich cua thuat toan nay",
             "tai sao dung linear regression",
             "ung bao thuc te",
-            "loi ich cua thuat toan nay",
-            "ung dung trong kho hang",
-            "du doan doanh so",
-            "tinh toan luong hang nhap"
+            "dung hoi quy de lam gi",
+            "du bao ton kho the nao"
         ],
         "response": "Tôi dùng nó để dự đoán xem tháng sau bạn cần nhập bao nhiêu hàng dựa trên tốc độ bán của các tháng trước."
     },
     {
         "intent": "algo_formula",
         "patterns": [
-            "he so goc va sai so",
+            "cach tinh y",
             "tinh toan du bao the nao",
-            "phuong trinh duong thang",
-            "y ax b la gi",
             "cong thuc toan hoc",
             "cong thuc hoi quy",
-            "giai thich tham so",
-            "cach tinh y"
+            "y ax b la gi",
+            "he so goc va sai so",
+            "phuong trinh duong thang",
+            "giai thich tham so"
         ],
         "response": "Công thức cơ bản là y = ax + b, trong đó y là giá trị cần dự báo, còn x là yếu tố ảnh hưởng (như thời gian chẳng hạn)."
     },
     {
         "intent": "algo_training",
         "patterns": [
-            "cap nhat du lieu huan luyen",
-            "qua trinh hoc cua thuat toan",
-            "huan luyen mo hinh the nao",
-            "cach day ai du bao",
-            "nap du lieu cho lora",
             "mat bao lau de train",
-            "training data la gi",
-            "day mo hinh hoi quy"
+            "huan luyen mo hinh the nao",
+            "qua trinh hoc cua thuat toan",
+            "cap nhat du lieu huan luyen",
+            "day mo hinh hoi quy",
+            "nap du lieu cho lora",
+            "cach day ai du bao",
+            "training data la gi"
         ],
         "response": "Bạn cứ nạp lịch sử xuất nhập kho vào, tôi sẽ tự 'học' để tìm ra quy luật tăng trưởng của hàng hóa."
     },
     {
         "intent": "algo_accuracy",
         "patterns": [
-            "sai so la bao nhieu",
-            "ket qua co tin cay khong",
-            "kiem tra do lech",
-            "danh gia mo hinh",
+            "sai so binh phuong toi thieu",
             "do chinh xac cua lora",
-            "do chinh xac bao nhieu",
+            "ket qua co tin cay khong",
+            "danh gia mo hinh",
             "du bao co chuan khong",
-            "sai so binh phuong toi thieu"
+            "sai so la bao nhieu",
+            "kiem tra do lech",
+            "do chinh xac bao nhieu"
         ],
         "response": "Độ chính xác phụ thuộc vào lượng dữ liệu bạn cung cấp. Hiện tại sai số đang ở mức rất thấp, bạn có thể tin cậy được!"
     },
     {
         "intent": "algo_variables",
         "patterns": [
-            "yeu to anh huong den kho",
+            "bien phu thuoc la gi",
             "bien doc lap la gi",
-            "tham so dau vao",
             "du lieu dau vao",
+            "tham so dau vao",
+            "yeu to anh huong den kho",
             "input va output",
             "chon bien the nao",
-            "bien phu thuoc la gi",
             "dau vao cua thuat toan"
         ],
         "response": "Biến đầu vào thường là thời gian hoặc sự kiện, còn đầu ra chính là số lượng hàng hóa chúng ta cần biết."
@@ -371,13 +371,13 @@
     {
         "intent": "algo_prediction",
         "patterns": [
-            "lora du bao the nao",
             "ket qua du bao thang toi",
-            "xu huong hang hoa",
-            "du bao tuong lai",
-            "cho xin ket qua",
-            "chay mo hinh di",
             "tinh toan thu xem",
+            "lora du bao the nao",
+            "du bao tuong lai",
+            "chay mo hinh di",
+            "cho xin ket qua",
+            "xu huong hang hoa",
             "du doan cho toi"
         ],
         "response": "Dựa trên đường hồi quy, xu hướng hàng hóa của bạn sẽ tăng khoảng 15% trong tuần tới. Chuẩn bị kho bãi nhé!"
@@ -385,27 +385,27 @@
     {
         "intent": "algo_error_fix",
         "patterns": [
-            "tai sao du bao sai",
-            "mo hinh bi lech roi",
-            "toi uu mo hinh",
             "xu ly outlier",
-            "chinh lai tham so",
-            "fix loi du bao",
             "du lieu nhieu qua",
-            "can dieu chinh thuat toan"
+            "chinh lai tham so",
+            "mo hinh bi lech roi",
+            "fix loi du bao",
+            "can dieu chinh thuat toan",
+            "tai sao du bao sai",
+            "toi uu mo hinh"
         ],
         "response": "Có thể do dữ liệu thực tế biến động đột ngột. Để tôi loại bỏ các giá trị nhiễu và tính toán lại cho chuẩn nhé."
     },
     {
         "intent": "algo_comparison",
         "patterns": [
-            "diem manh cua hoi quy",
-            "khac gi voi phan loai",
             "uu diem cua hoi quy",
-            "so sanh ai",
-            "lua chon thuat toan",
             "tai sao khong dung ai khac",
             "so sanh voi thuat toan khac",
+            "khac gi voi phan loai",
+            "diem manh cua hoi quy",
+            "so sanh ai",
+            "lua chon thuat toan",
             "linear vs logistic"
         ],
         "response": "Hồi quy tuyến tính đơn giản, nhanh và cực kỳ hiệu quả cho việc dự báo các con số cụ thể trong quản lý kho."
@@ -413,21 +413,21 @@
     {
         "intent": "tired_ge",
         "patterns": [
-            "that met moi",
             "tao met moi qua",
-            "tao met qua"
+            "tao met qua",
+            "that met moi"
         ],
         "response": "Bạn mệt rồi á, Bạn hãy nghỉ ngơi một tí!"
     },
     {
         "intent": "predict_import",
         "patterns": [
-            "du doan ngay mai nhap hang gi",
-            "du doan so luong hang hoa",
-            "du bao hang hoa can nhap vao ngay mai",
             "ngay mai co bao nhieu hang hoa phai nhap",
+            "du bao hang hoa se nhap la bao nhieu",
+            "du doan ngay mai nhap hang gi",
             "tinh hinh nhap hang hoa sap toi",
-            "du bao hang hoa se nhap la bao nhieu"
+            "du bao hang hoa can nhap vao ngay mai",
+            "du doan so luong hang hoa"
         ],
         "response": "LORA đang tính toán dựa trên dữ liệu quá khứ... Dự báo trong thời gian tới như sau:"
     },
@@ -441,107 +441,107 @@
     {
         "intent": "ai_generative1",
         "patterns": [
-            "may la ai",
-            "may do ai tao ra"
+            "may do ai tao ra",
+            "may la ai"
         ],
         "response": "Tôi là LORA,Tôi là một model ai dự đoán tương lai!"
     },
     {
         "intent": "smalltalk_status",
         "patterns": [
-            "may co ranh khong",
-            "may ranh k",
-            "dang lam gi do",
-            "ranh chu",
             "ranh k m",
+            "dang lam gi do",
+            "may ranh k",
             "co ban lam khong",
-            "lora oi ranh khong"
+            "lora oi ranh khong",
+            "ranh chu",
+            "may co ranh khong"
         ],
         "response": "Rảnh, tôi có thể giúp gì cho bạn!"
     },
     {
         "intent": "struct_overall",
         "patterns": [
+            "du an nay gom nhung gi",
             "cau tao cua tro ly nay",
-            "cac thanh phan cua he thong",
             "kien truc cua lora",
             "cau truc thu muc cua ban",
-            "thu muc aiwarehouse co gi",
-            "du an nay gom nhung gi",
             "giai thich cac file trong project",
-            "so do thu muc"
+            "thu muc aiwarehouse co gi",
+            "so do thu muc",
+            "cac thanh phan cua he thong"
         ],
         "response": "Dự án của tôi gồm 3 phần chính: Dữ liệu (dataset), Mô hình đã huấn luyện (model) và các mã nguồn thực thi (Python scripts)."
     },
     {
         "intent": "struct_data_history",
         "patterns": [
-            "sao luu du lieu o dau",
-            "thu muc datahistory la gi",
-            "lich su huan luyen luu o file nao",
-            "du lieu tho nam o dau",
-            "may duoc tao ra vi muc dich gi",
-            "file bin va json trong history",
             "check data history",
+            "muc dich tao ra may de lam gi",
             "muc dich may duoc tao ra",
-            "du lieu lich su nam o dau",
+            "du lieu tho nam o dau",
+            "file bin va json trong history",
             "full dataset dung de lam gi",
-            "muc dich tao ra may de lam gi"
+            "sao luu du lieu o dau",
+            "lich su huan luyen luu o file nao",
+            "thu muc datahistory la gi",
+            "du lieu lich su nam o dau",
+            "may duoc tao ra vi muc dich gi"
         ],
         "response": "Tôi là LORA AI,Tôi được tạo ra nhằm mục đích trao đổi và dự đoán tương lai trong mô hình quản lý bách hóa xanh "
     },
     {
         "intent": "struct_model_folder",
         "patterns": [
-            "mo hinh da train xong chua",
             "bo nao cua ai nam o file nao",
-            "file vectorizerpkl dung lam gi",
             "thu muc model chua gi",
+            "file vectorizerpkl dung lam gi",
+            "mo hinh da train xong chua",
+            "file pkl la gi",
             "giai thich intentmapjson",
             "kiem tra file model",
-            "mo hinh luu o dau",
-            "file pkl la gi"
+            "mo hinh luu o dau"
         ],
         "response": "Thư mục model chứa 'bộ não' của tôi, bao gồm warehouse_model.pkl và vectorizer để tôi có thể hiểu được ngôn ngữ của bạn."
     },
     {
         "intent": "struct_inference",
         "patterns": [
-            "file inferencepy la gi",
-            "ai tra loi bang file nao",
-            "kich hoat bo suy luan",
+            "he thong xu ly cau hoi the nao",
             "file thuc thi chinh",
-            "co che phan hoi cua lora",
+            "kich hoat bo suy luan",
+            "file inferencepy la gi",
             "lam sao de chay du doan",
+            "co che phan hoi cua lora",
             "chay file inference",
-            "he thong xu ly cau hoi the nao"
+            "ai tra loi bang file nao"
         ],
         "response": "Inference.py là file chạy chính, nó giúp tôi tiếp nhận câu hỏi từ bạn, phân tích và đưa ra phản hồi phù hợp nhất."
     },
     {
         "intent": "struct_training_script",
         "patterns": [
-            "huan luyen mo hinh",
-            "cach huan luyen lai ai",
             "cap nhat kien thuc cho ai",
-            "lam sao de day lora cau moi",
-            "khi nao can chay trainpy",
+            "cach huan luyen lai ai",
             "chay file train",
+            "khi nao can chay trainpy",
+            "lam sao de day lora cau moi",
             "file trainpy dung lam gi",
-            "day hoc cho tro ly"
+            "day hoc cho tro ly",
+            "huan luyen mo hinh"
         ],
         "response": "Train.py được dùng khi bạn muốn tôi học thêm các mẫu câu mới. Chỉ cần chạy file này, tôi sẽ cập nhật lại kiến thức ngay!"
     },
     {
         "intent": "struct_database_script",
         "patterns": [
-            "ket noi co so du lieu",
-            "lora doc du lieu o dau",
-            "doc data tu sql",
             "file readdatabasepy lam gi",
-            "file doc database",
+            "ket noi co so du lieu",
             "cach lay du lieu tu kho",
+            "doc data tu sql",
             "lay thong tin tu database",
+            "file doc database",
+            "lora doc du lieu o dau",
             "truy xuat du lieu kho"
         ],
         "response": "ReadDatabase.py chịu trách nhiệm kết nối và lấy thông tin hàng hóa trực tiếp từ cơ sở dữ liệu để tôi có thông tin chính xác nhất."
@@ -549,14 +549,14 @@
     {
         "intent": "struct_dataset_json",
         "patterns": [
-            "sua cau tra loi o dau",
-            "file datasetjson la gi",
+            "cau truc file dataset",
+            "them intent moi vao dau",
+            "quan ly tap du lieu",
             "noi dung file dataset",
             "file mau cau nam o dau",
-            "xem danh sach cau hoi",
-            "quan ly tap du lieu",
-            "cau truc file dataset",
-            "them intent moi vao dau"
+            "sua cau tra loi o dau",
+            "file datasetjson la gi",
+            "xem danh sach cau hoi"
         ],
         "response": "Dataset.json là nơi lưu trữ các mẫu câu hỏi và trả lời mà bạn đang bổ sung cho tôi đấy!"
     },
@@ -565,26 +565,26 @@
         "patterns": [
             "lora hieu tieng viet the nao",
             "tai sao can vectorizerpkl",
-            "chuyen van ban thanh so",
+            "xu ly ngon ngu the nao",
             "giai thich file pkl",
             "vectorizer la cai gi",
+            "chuyen van ban thanh so",
             "bo ma hoa ngon ngu",
-            "tac dung cua file vector",
-            "xu ly ngon ngu the nao"
+            "tac dung cua file vector"
         ],
         "response": "Vectorizer giúp tôi chuyển đổi các câu chữ của bạn thành những con số để máy tính có thể hiểu và tính toán được."
     },
     {
         "intent": "struct_intent_map",
         "patterns": [
-            "lam sao ai biet toi muon gi",
-            "giai thich file intentmapjson",
-            "phan loai muc dich cau hoi",
+            "intent map la gi",
             "cach ai phan loai cau hoi",
-            "check intent map",
             "ban do y dinh",
+            "phan loai muc dich cau hoi",
+            "giai thich file intentmapjson",
+            "check intent map",
             "anh xa y dinh",
-            "intent map la gi"
+            "lam sao ai biet toi muon gi"
         ],
         "response": "Intent_map.json giúp tôi ánh xạ các từ ngữ bạn nói vào đúng mục đích (như chào hỏi, công việc hay kỹ thuật)."
     }
