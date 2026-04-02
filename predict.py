@@ -63,7 +63,8 @@ class LoraPredictor:
                         "ma_hang": row['MaHangHoa'],
                         "ten_hang": row['TenHangHoa'],
                         "dvt": row.get('DonViTinh', 'Cái'),
-                        "qty": qty
+                        "qty": qty,
+                        "accuracy": f"{accuracy}%"
                     })
             
             # Lấy độ chính xác từ file json (Kết quả của quá trình Train 193k dòng)
