@@ -131,6 +131,22 @@ def train_forecast_branch():
             # 1. Tính độ chính xác (R2 Score)
             from sklearn.metrics import r2_score
             y_pred = model_xgb.predict(X)
+            results_df = pd.DataFrame({
+                'MaHangHoa': df[item_col],
+                'Actual': y,
+                'Predicted': y_pred
+            })
+
+            # 2. Tính độ chính xác cho từng dòng (100% - % sai số)
+            results_df['Accuracy'] = (1 - abs(results_df['Actual'] - results_df['Predicted']) / (results_df['Actual'] + 1)) * 100
+            results_df.loc[results_df['Accuracy'] < 0, 'Accuracy'] = 0
+
+            # 3. Gom nhóm theo Mã hàng để lấy độ chính xác trung bình của món đó
+            item_accuracies = results_df.groupby('MaHangHoa')['Accuracy'].mean().round(2).to_dict()
+
+            # 4. Lưu vào file JSON mới
+            with open("model/item_accuracy_map.json", "w") as f:
+                json.dump(item_accuracies, f)
             accuracy_val = r2_score(y, y_pred) * 100
             if accuracy_val < 0: accuracy_val = 0
             accuracy_val = round(accuracy_val, 2)
