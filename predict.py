@@ -70,7 +70,7 @@ class LoraPredictor:
             accuracy = "N/A"
             if os.path.exists(self.acc_file):
                 with open(self.acc_file, "r") as f:
-                    accuracy = json.load(f).get("train_data_detail", "N/A")
+                    accuracy = json.load(f).get("tonkho_chitiet", "N/A")
 
             return {
                 "date": target_date.strftime('%d/%m/%Y'),
