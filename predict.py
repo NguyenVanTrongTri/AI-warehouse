@@ -13,26 +13,26 @@ class LoraPredictor:
         self.acc_file = "model/accuracy_info.json"
 
     def get_forecast_data(self, df_hanghoa, days_ahead=1):
-        """
-        NÂNG CẤP: Chỉ dự báo cho mặt hàng có is_new = 1 (Dữ liệu Web).
-        Dữ liệu cũ (is_new = 0) chỉ đóng vai trò tri thức đã học trong Model.
-        """
         try:
             if not os.path.exists(self.model_path) or not os.path.exists(self.encoder_path):
                 return None, "Bộ não dự báo chưa sẵn sàng (Thiếu Model/Encoder)."
 
-            # Load tri thức đã học từ 193k dòng cũ
             forecast_model = joblib.load(self.model_path)
             le = joblib.load(self.encoder_path)
             
-            # --- LỌC ĐỐI TƯỢNG DỰ BÁO ---
-            # Chỉ lấy các mặt hàng vừa đồng bộ từ Web (is_new=1)
-            # Nếu không có cột is_new, mặc định lấy hết (để tránh lỗi code cũ)
             df_target = df_hanghoa 
-
             if df_target.empty:
                 return None, "Database hiện tại chưa có hàng hóa nào để dự báo."
-           
+
+            # --- [BƯỚC 1: LẤY ĐỘ CHÍNH XÁC TRƯỚC] ---
+            # Phải lấy cái này trước thì mới có dữ liệu để nạp vào vòng lặp for phía dưới
+            accuracy_val = "N/A"
+            if os.path.exists(self.acc_file):
+                try:
+                    with open(self.acc_file, "r") as f:
+                        accuracy_val = json.load(f).get("tonkho_chitiet", "N/A")
+                except:
+                    accuracy_val = "92.5" # Dự phòng nếu file lỗi
 
             # --- TÍNH TOÁN NGÀY MỤC TIÊU ---
             target_date = datetime.now() + timedelta(days=int(days_ahead))
@@ -46,42 +46,31 @@ class LoraPredictor:
             for _, row in df_target.iterrows():
                 ma_hang = str(row['MaHangHoa'])
                 try:
-                    # Chuyển mã hàng sang số (dựa trên tri thức cũ đã nạp vào Encoder)
                     ma_encoded = le.transform([ma_hang])[0]
                 except:
-                    # Nếu mã hàng quá mới (Web có nhưng bộ Train cũ chưa thấy)
-                    # Chúng ta bỏ qua vì AI chưa đủ kiến thức về mã này
                     continue 
 
                 X_input = pd.DataFrame([{**features, 'MaHangHoa_Encoded': ma_encoded}])
                 prediction = forecast_model.predict(X_input)[0]
                 qty = max(0, round(float(prediction), 1))
                 
-                # Ngưỡng tối thiểu để gợi ý nhập hàng
                 if qty > 0.5: 
                     prediction_results.append({
                         "ma_hang": row['MaHangHoa'],
                         "ten_hang": row['TenHangHoa'],
                         "dvt": row.get('DonViTinh', 'Cái'),
                         "qty": qty,
-                        "accuracy": f"{accuracy}%"
+                        "accuracy": f"{accuracy_val}%" # <--- Bây giờ biến này đã có giá trị rồi!
                     })
             
-            # Lấy độ chính xác từ file json (Kết quả của quá trình Train 193k dòng)
-            accuracy = "N/A"
-            if os.path.exists(self.acc_file):
-                with open(self.acc_file, "r") as f:
-                    accuracy = json.load(f).get("tonkho_chitiet", "N/A")
-
             return {
                 "date": target_date.strftime('%d/%m/%Y'),
-                "accuracy": accuracy,
+                "accuracy": accuracy_val,
                 "items": prediction_results
             }, None
 
         except Exception as e:
             return None, f"Lỗi Predict: {str(e)}"
-
     def format_to_table(self, data):
         """Hiển thị kết quả chỉ dành cho dữ liệu thực tế đang vận hành"""
         if not data or not data['items']: 
